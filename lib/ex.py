@@ -14,17 +14,28 @@ def encode(text, key):
 
 
 def decode(encrypted, key):
-    cipher = make_cipher(key)
+    cipher = make_reverse_cipher(key)
 
     plaintext_chars = []
     for i in encrypted:
-        plain_char = cipher[65 - ord(i)]
+        plain_char = cipher[ord(i) - 65]
         plaintext_chars.append(plain_char)
 
     return "".join(plaintext_chars)
 
 
 def make_cipher(key):
+    alphabet = [chr(i + 98) for i in range(-1, 25)]
+    cipher_with_duplicates = list(key) + alphabet
+
+    cipher = []
+    for i in range(0, len(cipher_with_duplicates)):
+        if cipher_with_duplicates[i] not in cipher_with_duplicates[:i]:
+            cipher.append(cipher_with_duplicates[i])
+
+    return cipher
+
+def make_reverse_cipher(key):
     alphabet = [chr(i + 98) for i in range(-1, 25)]
     cipher_with_duplicates = list(key) + alphabet
 

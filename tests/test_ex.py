@@ -5,7 +5,8 @@ def test_encode():
     assert result == "EMBAXNKEKSYOVQTBJSWBDEMBPHZGJSL"
 
 def test_decode():
-    result = encode('EMBAXNKEKSYOVQTBJSWBDEMBPHZGJSL', 'secretkey')
+    result = decode('EMBAXNKEKSYOVQTBJSWBDEMBPHZGJSL', 'secretkey')
+    print(result)
     assert result == "theswiftfoxjumpedoverthelazydog"
 
 
